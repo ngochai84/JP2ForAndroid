@@ -5,6 +5,7 @@
 
 cmake_minimum_required(VERSION 3.4.1)
 
+set(LOCAL_LDFLAGS "${LOCAL_LDFLAGS} -Wl,-z,max-page-size=16384")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DUSE_JPIP")
 
 # Creates and names a library, sets it as either STATIC
