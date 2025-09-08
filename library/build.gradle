@@ -4,10 +4,11 @@ apply plugin: 'maven-publish'
 //apply plugin: 'com.jfrog.bintray'
 
 android {
-    compileSdkVersion 30
+    namespace 'com.gemalto.jp2'
+    compileSdkVersion 36
     defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 30
+        minSdkVersion 24
+        targetSdkVersion 36
         versionName "1.0.3"
         versionCode 4
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -27,7 +28,7 @@ android {
             path "CMakeLists.txt"
         }
     }
-    ndkVersion '22.0.7026061'
+    ndkVersion '29.0.13113456 rc1'
 }
 
 dependencies {
@@ -89,4 +90,4 @@ ext {
     allLicenses = ["BSD-2-Clause"]
 }
 
-apply from: 'bintray.gradle'
+//apply from: 'bintray.gradle'
