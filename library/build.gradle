@@ -1,5 +1,11 @@
 apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
+//plugins {
+//    id 'com.android.library'
+//    id 'org.jetbrains.kotlin.android' // <-- ADD THIS LINE
+//    id 'maven-publish'
+//}
+//apply plugin: 'org.jetbrains.kotlin.android'
 //apply plugin: 'com.github.dcendents.android-maven'
 //apply plugin: 'com.jfrog.bintray'
 
@@ -8,7 +14,6 @@ android {
     compileSdkVersion 36
     defaultConfig {
         minSdkVersion 24
-        targetSdkVersion 36
         versionName "1.0.3"
         versionCode 4
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -34,21 +39,27 @@ android {
         sourceCompatibility JavaVersion.VERSION_17
     }
     buildToolsVersion '36.0.0'
+//    kotlinOptions {
+//        jvmTarget = JavaVersion.VERSION_17.toString()
+//        apiVersion = '1.1'
+//        languageVersion = '1.1'
+//    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.annotation:annotation:1.1.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:2.2.10" // Or a newer compatible version
+    implementation 'androidx.annotation:annotation:1.9.1'
     //testImplementation 'junit:junit:4.13.1'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.3.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.7.0'
 }
 
 /*************************************************************/
 /******************* PUBLISHING STUFF ************************/
 /*************************************************************/
 //create a sources jar
-task sourceJar(type: Jar) {
+tasks.register('sourceJar', Jar) {
     from android.sourceSets.main.java.srcDirs
 //    classifier 'sources'
 }

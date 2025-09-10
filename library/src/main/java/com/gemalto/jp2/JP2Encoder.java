@@ -65,9 +65,7 @@ public class JP2Encoder {
         this.bmp = bmp;
         maxResolutions = Math.min(log2RoundedDown(Math.min(bmp.getWidth(), bmp.getHeight())) + 1, MAX_RESOLUTIONS_GLOBAL);
         if (numResolutions > maxResolutions) numResolutions = maxResolutions;
-        if (BuildConfig.DEBUG) {
-            Log.d(TAG, String.format("openjpeg encode: image size = %d x %d, maxResolutions = %d", bmp.getWidth(), bmp.getHeight(), maxResolutions));
-        }
+        Log.d(TAG, String.format("openjpeg encode: image size = %d x %d, maxResolutions = %d", bmp.getWidth(), bmp.getHeight(), maxResolutions));
     }
 
 
@@ -225,9 +223,9 @@ public class JP2Encoder {
         int [] pixels = new int [bmp.getWidth() * bmp.getHeight()];
         bmp.getPixels(pixels, 0, bmp.getWidth(), 0, 0, bmp.getWidth(), bmp.getHeight());
         /* debug */ long start = 0;
-        /* debug */ if (BuildConfig.DEBUG) start = System.currentTimeMillis();
+//        /* debug */ if (BuildConfig.DEBUG) start = System.currentTimeMillis();
         byte[] ret = encodeJP2ByteArray(pixels, bmp.hasAlpha(), bmp.getWidth(), bmp.getHeight(), outputFormat, numResolutions, compressionRatios, qualityValues);
-        /* debug */ if (BuildConfig.DEBUG) Log.d(TAG, "converting to JP2: " + (System.currentTimeMillis() - start) + " ms");
+//        /* debug */ if (BuildConfig.DEBUG) Log.d(TAG, "converting to JP2: " + (System.currentTimeMillis() - start) + " ms");
         return ret;
     }
 
@@ -236,9 +234,9 @@ public class JP2Encoder {
         int [] pixels = new int [bmp.getWidth() * bmp.getHeight()];
         bmp.getPixels(pixels, 0, bmp.getWidth(), 0, 0, bmp.getWidth(), bmp.getHeight());
         /* debug */ long start = 0;
-        /* debug */ if (BuildConfig.DEBUG) start = System.currentTimeMillis();
+//        /* debug */ if (BuildConfig.DEBUG) start = System.currentTimeMillis();
         int ret = encodeJP2File(fileName, pixels, bmp.hasAlpha(), bmp.getWidth(), bmp.getHeight(), outputFormat, numResolutions, compressionRatios, qualityValues);
-        /* debug */ if (BuildConfig.DEBUG) Log.d(TAG, "converting to JP2: " + (System.currentTimeMillis() - start) + " ms");
+//        /* debug */ if (BuildConfig.DEBUG) Log.d(TAG, "converting to JP2: " + (System.currentTimeMillis() - start) + " ms");
         return ret == EXIT_SUCCESS;
     }
 
