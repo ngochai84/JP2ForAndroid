@@ -5,7 +5,10 @@
 
 cmake_minimum_required(VERSION 3.4.1)
 
-set(LOCAL_LDFLAGS "${LOCAL_LDFLAGS} -Wl,-z,max-page-size=16384")
+# Configure for Android 16KB page size compatibility
+# This makes the library work with both 4KB and 16KB page sizes
+set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -Wl,-z,max-page-size=16384")
+set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -Wl,-z,common-page-size=4096")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DUSE_JPIP")
 
 # Creates and names a library, sets it as either STATIC
