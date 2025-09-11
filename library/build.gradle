@@ -1,13 +1,5 @@
 apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
-//plugins {
-//    id 'com.android.library'
-//    id 'org.jetbrains.kotlin.android' // <-- ADD THIS LINE
-//    id 'maven-publish'
-//}
-//apply plugin: 'org.jetbrains.kotlin.android'
-//apply plugin: 'com.github.dcendents.android-maven'
-//apply plugin: 'com.jfrog.bintray'
 
 android {
     namespace 'com.gemalto.jp2'
@@ -81,29 +73,3 @@ publishing {
         }
     }
 }
-
-ext {
-    bintrayRepo = 'maven'
-    bintrayName = 'JP2ForAndroid'
-
-    publishedGroupId = 'com.gemalto.jp2'
-    libraryName = 'JP2ForAndroid'
-    artifact = 'jp2-android'
-
-    libraryDescription = 'A JPEG-2000 image encoder/decoder for Android'
-
-    siteUrl = 'https://github.com/gemalto/JP2ForAndroid'
-    gitUrl = 'https://github.com/gemalto/JP2ForAndroid.git'
-
-    libraryVersion = "${android.defaultConfig.versionName}"
-
-    developerId = 'michal-dvorak-thales'
-    developerName = 'Michal Dvorak'
-    developerEmail = 'michal.dvorak@thalesgroup.com'
-
-    licenseName = 'The 2-Clause BSD License'
-    licenseUrl = 'https://opensource.org/licenses/BSD-2-Clause'
-    allLicenses = ["BSD-2-Clause"]
-}
-
-//apply from: 'bintray.gradle'
