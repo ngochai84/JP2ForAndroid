@@ -64,10 +64,8 @@ publishing {
             artifactId 'jp2-android'
             version "${android.defaultConfig.versionName}"
             
-            // Add the AAR artifact with proper task dependency
-            artifact("$buildDir/outputs/aar/${project.name}-release.aar") {
-                builtBy tasks.bundleReleaseAar
-            }
+            // Add the AAR artifact - let Gradle handle the dependency automatically
+            artifact("$buildDir/outputs/aar/${project.name}-release.aar")
             
             // Add the sources jar
             artifact(sourceJar)
@@ -91,5 +89,12 @@ publishing {
         maven {
             url 'build/repo'
         }
+    }
+}
+
+// Ensure the publishing task depends on the AAR bundle task
+afterEvaluate {
+    tasks.named('publishAarReleasePublicationToMavenLocal').configure {
+        dependsOn 'bundleReleaseAar'
     }
 }
