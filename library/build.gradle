@@ -64,8 +64,10 @@ publishing {
             artifactId 'jp2-android'
             version "${android.defaultConfig.versionName}"
             
-            // Add the AAR artifact
-            artifact("$buildDir/outputs/aar/${project.name}-release.aar")
+            // Add the AAR artifact with proper task dependency
+            artifact("$buildDir/outputs/aar/${project.name}-release.aar") {
+                builtBy tasks.bundleReleaseAar
+            }
             
             // Add the sources jar
             artifact(sourceJar)
