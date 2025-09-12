@@ -1,0 +1,11 @@
+jdk:
+  - openjdk17
+
+before_install:
+  - echo "Starting JitPack build for JP2ForAndroid"
+
+build:
+  - ./gradlew clean :jp2-android:bundleReleaseAar
+
+publish:
+  - ./gradlew :jp2-android:publishAarReleasePublicationToMavenLocal

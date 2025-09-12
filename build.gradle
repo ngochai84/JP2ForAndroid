@@ -36,3 +36,17 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+// JitPack configuration
+subprojects {
+    afterEvaluate { project ->
+        if (project.hasProperty("android")) {
+            android {
+                compileSdkVersion 36
+                defaultConfig {
+                    minSdkVersion 24
+                }
+            }
+        }
+    }
+}
